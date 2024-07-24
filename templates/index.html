@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraping of IMDB</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <h1 class="text-center">Web Scraping of IMDB</h1>
+        <form method="post" action="/scrape" class="text-center mt-3">
+            <div class="form-group">
+                <label for="sheet_name">Select the form to scrape:</label>
+                <select name="sheet_name" id="sheet_name" class="form-control">
+                    {% for sheet in sheet_names %}
+                        <option value="{{ sheet }}">{{ sheet }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Enter to Scrape</button>
+        </form>
+    </div>
+</body>
+</html>

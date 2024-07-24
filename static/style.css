@@ -1,0 +1,23 @@
+body {
+    background-color: #000; /* Black background */
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+.container {
+    background: rgba(0, 0, 0, 0.85); /* Black background inside the container */
+    padding: 30px;
+    border-radius: 10px;
+}
+h1 {
+    color: #ffcc00; /* Yellow color */
+}
+.btn-secondary {
+    background-color: #ffcc00; /* Yellow color */
+    border-color: #ffcc00; /* Yellow color */
+    color: #000; /* Black text */
+}
+.btn-secondary:hover {
+    background-color: #e6b800; /* Darker yellow on hover */
+    border-color: #e6b800; /* Darker yellow on hover */
+    color: #000; /* Black text */
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDB Movie Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            max-width: 1800px;
+            width: 100%;
+            margin: auto;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .btn-secondary {
+            background-color: #ffcc00;
+            border-color: #ffcc00;
+            color: #000;
+        }
+        .btn-secondary:hover {
+            background-color: #e6b800;
+            border-color: #e6b800;
+            color: #000;
+        }
+        .form-control {
+            background-color: #333;
+            border: 1px solid #ffcc00;
+            color: #fff;
+        }
+        .form-control::placeholder {
+            color: #ccc;
+        }
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            background-color: #222;
+            border-radius: 5px;
+            border: 1px solid #ffcc00;
+            min-width: 600px; /* Adjust as needed */
+            width: auto;
+        }
+        th, td {
+            text-align: center;
+            white-space: nowrap;
+        }
+        .charts-container {
+            margin-top: 30px;
+        }
+        .chart-wrapper {
+            margin-bottom: 30px;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>IMDB Movie Database</h1>
+        <div class="table-wrapper">
+            <table>
+                <!-- Table content here -->
+                {{ table|safe }}
+            </table>
+        </div>
+        <button onclick="window.location.href='/'" class="btn btn-secondary mt-3">Go Back</button>
+    </div>
+
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Charts -->
+    <div class="container charts-container">
+        <div class="row">
+            <div class="col-md-6 chart-wrapper">
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="col-md-6 chart-wrapper">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 chart-wrapper">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="col-md-6 chart-wrapper">
+                <canvas id="doughnutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js configuration -->
+    <script>
+        // Bar Chart
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Action', 'Comedy', 'Drama', 'Horror', 'Romance'],
+                datasets: [{
+                    label: 'Number of Movies',
+                    data: [12, 19, 3, 5, 2], // Replace with your actual data
+                    backgroundColor: '#ffcc00'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        var ctxPie = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Action', 'Comedy', 'Drama', 'Horror', 'Romance'],
+                datasets: [{
+                    label: 'Movie Genres',
+                    data: [12, 19, 3, 5, 2], // Replace with your actual data
+                    backgroundColor: ['#ffcc00', '#e6b800', '#cc9900', '#996600', '#664d00']
+                }]
+            }
+        });
+
+        // Line Chart
+        var ctxLine = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Monthly Movie Releases',
+                    data: [5, 10, 15, 20, 25], // Replace with your actual data
+                    borderColor: '#ffcc00',
+                    backgroundColor: 'rgba(255, 204, 0, 0.3)',
+                    fill: true
+                }]
+            }
+        });
+
+        // Doughnut Chart
+        var ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+        var doughnutChart = new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Action', 'Comedy', 'Drama', 'Horror', 'Romance'],
+                datasets: [{
+                    label: 'Genre Distribution',
+                    data: [12, 19, 3, 5, 2], // Replace with your actual data
+                    backgroundColor: ['#ffcc00', '#e6b800', '#cc9900', '#996600', '#664d00']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
